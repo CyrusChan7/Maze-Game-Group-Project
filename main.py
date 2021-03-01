@@ -1,5 +1,5 @@
 import random
-
+from player import Player
 
 class Maze:
     """
@@ -25,7 +25,8 @@ class Maze:
         
         #assign private var _game_map the contents of game map array
         self._game_map = game_map
-
+        self._player_x = 0
+        self._player_y = 0
 
     #getter for maze structure
     @property
@@ -42,9 +43,13 @@ class Maze:
         #put barrier on bottom of maze
         #this works 2 out of 4 times
         print("‾" * 22)
+    
+    @property
+    def player_location(self):
+        return self._player_x, self._player_y
 
 
-    def can_move_to(self, line_number_, column_number_):
+    def can_move_to(self, line_num_, column_num_):
         """
         Behaviour: Recieve a line number and column number to check if it as empty space
         
@@ -58,19 +63,19 @@ class Maze:
         :rtype: boolean
         """
         #Ensure that the user doesn't go out of bounds
-        if line_number_ > 19:   
-            line_number_ = 19
-        elif line_number_ < 0:
-            line_number_ = 0
+        if line_num_ > 19:   
+            line_num_ = 19
+        elif line_num_ < 0:
+            line_num_ = 0
 
-        if column_number_ > 19:
-            column_number_ = 19
-        elif column_number_ < 0:
-            column_number_ = 0
+        if column_num_ > 19:
+            column_num_ = 19
+        elif column_num_ < 0:
+            column_num_ = 0
 
         #The 0 enters the string in the index assigned to the line_number_
         #column_number_ is the index parsing through the string
-        if (self._game_map[line_number_][column_number_] == " "):
+        if (self._game_map[line_num_][column_num_] != "X"):
             return True     # Return true if empty space
         else:
             return False    # Return false if wall present
@@ -100,7 +105,7 @@ class Maze:
 
     def put_objects_on_map(self):
         """
-        Behaviour: Randomly select 4 empty spots to put objects instead
+        Behaviour: Randomly select 4 empty spots to place objects into the maze
     
         """
         objects = ["T", "D", "H", "P"]  # T for Treasure, D for Dagger, H for Helmet, P for Potion
@@ -151,25 +156,99 @@ class Maze:
     def is_exit(self, line_num_, column_num_):
         """
         Behaviour: checks if requested location is the exit
+        
+        :param line_num_: Line number coordinate of specified location
+        :type line_num_: int
+        
+        :param column_num_: Column number coordinate of specified location
+        :type column_num_: int
+        
+        :return: TRUE if specified location is an exit of the maze, FALSE if the location is not an exit
+        :type: boolean
+        
         """
         if line_num_ == 19 and column_num_ == 19:
             return True     # The specified number is the exit
         else:
             return False    # The specified number is not the exit
 
+    
+    def move_player(self, player_loc):
+        #player location = [x,y]
+        new_x = player_loc[0] #x
+        new_y = player_loc[1] #y
+        old_x = self._player_x
+        old_y = self._player_y
+
+        if self.can_move_to(new_x, new_y) == True:
+            Player.x_coordinate = new_x
+            Player.y_coordinate = new_y
+            self._player_x = new_x
+            self._player_y = new_y
+
+            if self.is_exit(new_x, new_y) == True:
+                print("You won!")
+
+            if self.is_item(new_x, new_y) == True:
+                item = self._game_map[new_x][new_y]
+                Player.backpack = item
+                self._game_map[old_x][old_y] = ' '
+                self._game_map[new_x][new_y] = 'G'
+
+            self._game_map[old_x][old_y] = ' '
+            self._game_map[new_x][new_y] = 'G'
+
+# def main():
+#     x_player = Player.x_coordinate
+#     y_player = Player.y_coordinate
+    
+#     game_in_progress = True
+#     while game_in_progress:
+#         user_direction = input("Please input a direction to move in (WASD): ")
+#         if user_direction.lower() == "w":
+#             Maze.move_player([x_player, (y_player + 1)])
+#             print(x_player, y_player)
+#
+
 
 if __name__ == "__main__":
-    gamers = Maze("maze.txt")
-    # gamers.display
-    # print(gamers.can_move_to(0,1))      # True
-    # print(gamers.can_move_to(1,1))      # False
-    # print(gamers.can_move_to(2,1))      # False
-    # print(gamers.can_move_to(35,0))     # True
-    # print(gamers.find_random_spot())       # True Empty
-    gamers.put_objects_on_map()
-    gamers.display
-    print(gamers.is_exit(19,19))
-    print(gamers.is_exit(15,4))
-    print(gamers.is_exit(9,3))
+    game_map = Maze("maze.txt")
+    peter_morgan = Player()
+    game_map.put_objects_on_map()
 
+    game_in_progress = True
+    while game_in_progress:
+        # !!!!!!!!!!!!!!!!!!!!!!!!!!!!! this shit make no sense.... comment before we hand in... everything backwards logic !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        x_player = str(peter_morgan.x_coordinate)
+        y_player = str(peter_morgan.y_coordinate)
+        user_direction = input("Please input a direction to move in (WASD): ")
+        if user_direction.lower() == "w":
+            new_y = int(y_player) 
+            new_x = int(x_player) - 1
+            game_map.move_player([new_x, new_y])
+            game_map.display
 
+        elif user_direction.lower() == "a":
+            new_y = int(y_player) - 1
+            new_x = int(x_player) 
+            game_map.move_player([new_x, new_y])
+            game_map.display
+
+        elif user_direction.lower() == "d":
+            new_y = int(y_player) + 1
+            new_x = int(x_player) 
+            game_map.move_player([new_x, new_y])
+            game_map.display
+
+        elif user_direction.lower() == "s":
+            new_y = int(y_player) 
+            new_x = int(x_player) + 1
+            game_map.move_player([new_x, new_y])
+            game_map.display
+        
+        elif user_direction.lower() == "q":
+            break
+    
+    print(peter_morgan.backpack)
+        
+    #main()
