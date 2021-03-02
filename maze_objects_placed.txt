@@ -1,13 +1,13 @@
-S  X                
+S  X    D           
  X XXXXXXXXXXXXXX X 
- X X X     H    X X 
- X X X XXXXXXXXXX X 
- X  P  X            
+ X X X          X X 
+ X X X XXXXXXXXXXXX 
+ X     X   T        
  XXXXXXXXXXXXXXXXXX 
  X      X         X 
  X   X    X X X   X 
- X   X  X X X XXX X 
- X  XXXXX  TX X   XD
+ X  HX  X X X XXX X 
+ X  XXXXX   X X   X 
  X      XXX X X XXX 
  XXXXXX X   X X   X 
       X X XXX XXX X 
@@ -17,4 +17,4 @@ X X XXX X   XXXXX X
  XX X X X   XXXXXXX 
       XXX         X 
 XXXXXXXXX XXXXXXXXXX
-                   E
+     P             E

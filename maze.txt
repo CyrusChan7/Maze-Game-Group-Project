@@ -1,7 +1,7 @@
 S  X                
  X XXXXXXXXXXXXXX X 
  X X X          X X 
- X X X XXXXXXXXXX X 
+ X X X XXXXXXXXXXXX 
  X     X            
  XXXXXXXXXXXXXXXXXX 
  X      X         X 

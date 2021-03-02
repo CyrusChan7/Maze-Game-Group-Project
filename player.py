@@ -15,12 +15,18 @@ class Player:
     def backpack(self):
         return self._backpack
 
-    # This is required because list append doesn't work in setters
+    #This is required because list append doesn't work in setters
     @backpack.setter
     def backpack(self, value):
         self._backpack.append(value)
+        return self._backpack
 
-        
+    '''
+    def add_item_to_backpack(self, value):
+        self._backpack.append(value)
+        return self._backpack
+    '''
+     
     @property
     def x_coordinate(self):
         return self._x_coordinate
@@ -38,4 +44,3 @@ class Player:
     def y_coordinate(self, value):
         self._y_coordinate = value
         #self.coordinate_check()
-    
