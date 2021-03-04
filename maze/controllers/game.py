@@ -14,6 +14,7 @@ class GameController:
         """
         self._maze = Maze("maze.txt") 
         self._maze.put_objects_on_map()
+        
         self._view = GameView(self._maze)
     
     
@@ -41,5 +42,3 @@ class GameController:
                         self._view.move_player("DOWN")
                     elif event.key == pygame.K_d:
                         self._view.move_player("RIGHT")
-
-                pygame.display.update()

@@ -43,6 +43,8 @@ class Player:
 
     def append_to_backpack(self, value):
         """
+        Adds object in maze to backpack
+        
         :param value: item to add to the backpack
         :type value: string
         """

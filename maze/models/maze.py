@@ -43,39 +43,29 @@ class Maze:
     
     def can_move_to(self, line_num_, column_num_):
         """
-        Behaviour: Recieve a line number and column number to check if it as empty space
+        Recieve a line number and column number to check if it as empty space
 
         :param line_number_: Number of the line in the maze (x coordinate)
-        :param line_number_: int
+        :type line_number_: int
 
         :param column_number_: Number of the column in the maze (y coordinate)
-        :param column_number_: int
+        :type column_number_: int
 
         :return: TRUE if empty space, FALSE if wall present 
         :rtype: boolean
         """
-        # Ensure that the user doesn't go out of bounds
-        if line_num_ > 19:
-            line_num_ = 19
-        elif line_num_ < 0:
-            line_num_ = 0
 
-        if column_num_ > 19:
-            column_num_ = 19
-        elif column_num_ < 0:
-            column_num_ = 0
-
-        # The 0 enters the string in the index assigned to the line_number_
         # column_number_ is the index parsing through the string
-        if (self._game_map[line_num_][column_num_] != "X"):
+        if self._game_map[line_num_][column_num_] != "X":
             return True     # Return true if empty space
+
         else:
-            return False    # Return false if wall present
+            return False
 
 
     def find_random_spot(self):
         """
-        Behaviour: Return a tuple of line number and column number that is an empty space
+        Return a tuple of line number and column number that is a random empty space
 
         :return: Tuple of a line number and column number (coordinate of an empty space in the maze)
         :rtype: tuple
@@ -87,9 +77,8 @@ class Maze:
 
         # Call check function to determine if empty space
         while self.can_move_to(rand_line_num, rand_col_num) != True:
-            # if the position is not empty, keep the running the loop until empty position is found
-            if rand_line_num != 0 and rand_col_num != 0:
-                if rand_col_num != 19 and rand_line_num != 19:
+            if self.is_exit(rand_line_num, rand_col_num) != True:
+                if self.is_start(rand_line_num, rand_col_num) != True:
                     rand_line_num = random.randint(0, 19)
                     rand_col_num = random.randint(0, 19)
 
@@ -99,7 +88,7 @@ class Maze:
 
     def put_objects_on_map(self):
         """
-        Behaviour: Randomly select 4 empty spots to place objects into the maze
+        Randomly select 4 empty spots to place objects into the maze
 
         :return: None
         """
@@ -130,7 +119,7 @@ class Maze:
 
     def is_item(self, line_num_, column_num_):
         """
-        Behaviour: Returns true if specified coordinates is a random item (not empty space or wall)
+        Behaviour: Checks if specified coordinates is a maze object (not empty space or wall)
 
         :param line_num_: Line number coordinate of specified location
         :type line_num_: int
@@ -139,7 +128,7 @@ class Maze:
         :type column_num_: int
 
         :return: TRUE if location is an object, FALSE if location is not an object (empty space or wall)
-        :type: boolean
+        :rtype: boolean
         """
         # check if specified location is an empty space, or a wall
         if (self._game_map[line_num_][column_num_] == " " or self._game_map[line_num_][column_num_] == "X"):
@@ -150,7 +139,7 @@ class Maze:
 
     def is_exit(self, line_num_, column_num_):
         """
-        Behaviour: checks if requested location is the exit
+        Behaviour: Checks if requested location is the exit
 
         :param line_num_: Line number coordinate of specified location
         :type line_num_: int
@@ -159,12 +148,31 @@ class Maze:
         :type column_num_: int
 
         :return: TRUE if specified location is an exit of the maze, FALSE if the location is not an exit
-        :type: boolean
+        :rtype: boolean
         """
         if line_num_ == 19 and column_num_ == 19:
             return True     # The specified number is the exit
         else:
             return False    # The specified number is not the exit
+
+
+    def is_start(self, line_num_, column_num_):
+        """
+        Behaviour: Checks if requested location is the start
+
+        :param line_num_: Line number coordinate of specified location
+        :type line_num_: int
+
+        :param column_num_: Column number coordinate of specified location
+        :type column_num_: int
+
+        :return: TRUE if specified location is an start of the maze, FALSE if the location is not start
+        :rtype: boolean
+        """
+        if line_num_ == 0 and column_num_ == 0:
+            return True     # The specified number is the start
+        else:
+            return False    # The specified number is not the start
 
 
     def win_or_lose(self):
@@ -175,8 +183,8 @@ class Maze:
         :rtype: string
         """
         if len(self._player.backpack) == 4:
-            exit_message = "You won, congratulations!"
+            exit_message = "You WON - Congratulations!"
         else:
-            exit_message = "You lost because you didn't collect all of the items!"
+            exit_message = f"You LOST - You only collected {len(self._player.backpack)} of 4 items!"
             
         return exit_message
