@@ -12,12 +12,16 @@ class GameController:
         """
         Initializes maze, and view attributes
         """
-        self._maze = Maze("maze.txt") 
+        self._maze = Maze("maze.txt")
         self._maze.put_objects_on_map()
         
         self._view = GameView(self._maze)
-    
-    
+        self._player_time = 0
+
+    @property
+    def player_time(self):
+        return self._player_time
+
     def get_user_input(self):
         """
         Identifies events occuring while the game runs and calls appropriate methods
@@ -42,3 +46,5 @@ class GameController:
                         self._view.move_player("DOWN")
                     elif event.key == pygame.K_d:
                         self._view.move_player("RIGHT")
+            
+            self._player_time = self._view.player_time

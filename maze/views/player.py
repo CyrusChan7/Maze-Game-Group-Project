@@ -1,5 +1,6 @@
 from views.status import StatusView
 from models.maze import Maze
+from models.score import Score
 import pygame
 
 class PlayerView:
@@ -67,6 +68,7 @@ class PlayerView:
         if self._maze.is_exit(new_x, new_y) == True:
             #print(self._maze.win_or_lose())
             msg = self._maze.win_or_lose()
+
             #pass win or lose message to status view to display
             status_view = StatusView(self._screen) 
             status_view.display_message(msg)

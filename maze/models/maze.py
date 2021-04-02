@@ -40,7 +40,6 @@ class Maze:
     def game_map(self):
         return self._game_map
     
-    
     def can_move_to(self, line_num_, column_num_):
         """
         Recieve a line number and column number to check if it as empty space

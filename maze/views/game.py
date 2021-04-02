@@ -41,7 +41,7 @@ class GameView:
         
         self._player_view = PlayerView(self._maze, self._screen)
         
-        self._status_view = StatusView(self._screen) 
+        self._status_view = StatusView(self._screen)
 
     def move_player(self, action_):
         """
@@ -90,6 +90,7 @@ class GameView:
         Displays amount of time left before game ends
         """
         self._timer -= self._time_passed
+        print(self._timer)
 
         square_surface = pygame.Surface((200, 40))
         square_surface.set_colorkey((255, 255, 255))
@@ -108,3 +109,7 @@ class GameView:
             raise SystemExit(msg)
 
         self._time_passed = self._clock.tick(30) / 1000  # / 1000 to convert to seconds.
+
+    @property
+    def player_time(self):
+        return self._timer
