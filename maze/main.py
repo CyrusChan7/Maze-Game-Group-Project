@@ -4,6 +4,9 @@ from datetime import datetime
 from models.persistence import Persistence
 import tkinter  # This library is for the GUI where the user enters their name
 
+# Player username
+username = ""
+
 
 def main():
 
@@ -11,16 +14,14 @@ def main():
     root.geometry("250x100")
 
     player_username = tkinter.StringVar()
-    
-    #player username
-    username = ""
 
     def submit_username():
         global username
         username = player_username.get()
-        print(f"Your username is: {username}")
+        #print(f"Your username is: {username}")
         player_username.set("")
         root.destroy()      # Close the GUI window after the user submits their username
+
 
     username_label = tkinter.Label(root, text="Enter your username: ")
     username_entry = tkinter.Entry(root, textvariable=player_username )
@@ -36,6 +37,8 @@ def main():
     Runs the maze game
     """
     game_controller = GameController()
+
+    print(f"DEBUG: username is {username}")
 
     running = True
     while running:
