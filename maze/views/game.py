@@ -90,7 +90,6 @@ class GameView:
         Displays amount of time left before game ends
         """
         self._timer -= self._time_passed
-        print(self._timer)
 
         square_surface = pygame.Surface((200, 40))
         square_surface.set_colorkey((255, 255, 255))

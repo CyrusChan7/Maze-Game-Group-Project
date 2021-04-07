@@ -29,10 +29,6 @@ class Score:
     def date(self):
         return self._current_date
     
-    def to_json(self):
-        #Return JSON representation of Player instance
-        json = {"name": self._player_name, "score": self._score, "date": self._current_date}
-        return str(json)
 
     def to_dict(self):
         #Return a dictionary version of Player instance
@@ -42,12 +38,6 @@ class Score:
             "date": self._current_date
         }
 
-    def from_json(self, json_string):
-        #Return a new instance containing data from json data
-        json_data = json.load(json_string)
-        self._player_name = json_data['name']
-        self._score = json_data['score']
-        self._current_date = json_data['date']
 
     def from_dict(self, inst_dict):
         #Return a new instance containing data from json data 

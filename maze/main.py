@@ -1,6 +1,7 @@
 from controllers.game import GameController
 from models.score import Score
 from datetime import datetime
+from models.persistence import Persistence
 import tkinter  # This library is for the GUI where the user enters their name
 
 
@@ -10,14 +11,16 @@ def main():
     root.geometry("250x100")
 
     player_username = tkinter.StringVar()
+    
+    #player username
+    username = ""
 
     def submit_username():
-        name = player_username.get()
-        print(f"Your username is: {name}")
+        global username
+        username = player_username.get()
+        print(f"Your username is: {username}")
         player_username.set("")
         root.destroy()      # Close the GUI window after the user submits their username
-
-        return name
 
     username_label = tkinter.Label(root, text="Enter your username: ")
     username_entry = tkinter.Entry(root, textvariable=player_username )
@@ -44,13 +47,12 @@ def main():
 
     player_score = Score()
     player_score.from_dict({
-        "name": "Rye Ang lamao",
-        "score": game_controller.player_time,
+        "name": "Player",
+        "score": game_controller.player_time*25,
         "date": str(datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
      })
-    
-    print(player_score.player_name)
-    print(player_score.date)
-    print(player_score.score)
+
+    perc_file = Persistence(player_score)
+    perc_file.to_csv()
 
 main()
