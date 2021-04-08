@@ -8,7 +8,6 @@ import tkinter  # This library is for the GUI where the user enters their userna
 username = ""
 
 # Using main() as a class
-# we realize we did not do this correctly.. it was too close to the hand in time to change the code and UML to fix it
 def main():
     """
     Runs the maze game
