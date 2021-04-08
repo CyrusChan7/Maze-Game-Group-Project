@@ -41,6 +41,8 @@ def main():
 
     game_controller = GameController()
 
+    print(f"DEBUG: username is {username}")
+
     running = True
     while running:
         try:
