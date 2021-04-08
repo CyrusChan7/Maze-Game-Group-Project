@@ -39,9 +39,7 @@ def main():
 
     root.mainloop()     # Keep the GUI open
 
-    game_controller = GameController()
-
-    print(f"DEBUG: username is {username}")
+    game_controller = GameController()  # Create an instance of GameController
 
     running = True
     while running:

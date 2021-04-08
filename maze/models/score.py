@@ -6,10 +6,10 @@ class Score:
         """
         This Model represents a Player's score
         """
-        self._player_name = "Yves"
+        self._player_name = ""
         # change this score value to calculate score based on how fast the player finishes
         self._score = 0
-        self._current_date = str(datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+        self._current_date = "test-date"
 
     # getter for player's name
     @property
@@ -23,7 +23,6 @@ class Score:
 
     # setter for player's score
     @score.setter
-    @property
     def score(self, new_score):
         self._score = new_score
     
@@ -43,7 +42,7 @@ class Score:
 
 
     def from_dict(self, inst_dict):
-        # return a new instance containing data from json data 
+        # create a new instance containing data from dict data 
         self._player_name = inst_dict["name"]
         self._score = int(inst_dict["score"])
         self._current_date = inst_dict["date"]
