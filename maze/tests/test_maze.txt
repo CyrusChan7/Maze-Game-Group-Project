@@ -6,15 +6,15 @@ S  X
  XXXXXXXXXXXXXXXXXX 
  X      X         X 
  X   X    X X X   X 
-HX  PX  X X X XXX X 
+ X   X  X X X XXX X 
  X  XXXXX   X X   X 
  X      XXX X X XXX 
  XXXXXX X   X X   X 
       X X XXX XXX X 
 XXXXX   X   X  X  X 
 X X XXX X   XXXXX X 
-  X X   X XXX  D    
+  X X   X XXX       
  XX X X X   XXXXXXX 
       XXX         X 
 XXXXXXXXX XXXXXXXXXX
-            T      E
+                   E

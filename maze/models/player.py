@@ -6,8 +6,8 @@ class Player:
         """
         Initializes backpack, and x, y coordinate
         """
-        self._backpack = []     # Initialize empty list for backpack of items picked up along the way
-        self._x_coordinate = 0  # Track location (x and y coordinates) of player in the maze
+        self._backpack = []
+        self._x_coordinate = 0
         self._y_coordinate = 0
     
     # getter for Player backpack

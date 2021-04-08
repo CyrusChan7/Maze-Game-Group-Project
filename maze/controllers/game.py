@@ -10,17 +10,24 @@ class GameController:
     """
     def __init__(self):
         """
-        Initializes maze, and view attributes
+        Initializes maze, view attribute, player time, and player backpack
         """
         self._maze = Maze("maze.txt")
         self._maze.put_objects_on_map()
         
         self._view = GameView(self._maze)
         self._player_time = 0
+        self._player_backpack = []
 
+    # getter for player time
     @property
     def player_time(self):
         return self._player_time
+
+    # getter for player backpack
+    @property
+    def player_backpack(self):
+        return self._player_backpack
 
     def get_user_input(self):
         """
@@ -48,3 +55,4 @@ class GameController:
                         self._view.move_player("RIGHT")
             
             self._player_time = self._view.player_time
+            self._player_backpack = self._view.player_backpack

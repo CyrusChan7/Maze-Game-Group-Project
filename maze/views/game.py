@@ -21,11 +21,11 @@ class GameView:
 
         pygame.init()
 
-        #creates a screen and gives it a black background
+        # Creates a screen and gives it a black background
         self._screen = pygame.display.set_mode((800, 820))
         self._screen.fill((0, 0, 0))
 
-        #sets up the timer
+        # Sets up the timer
         self._font = pygame.font.Font(None, 40)
         self._clock = pygame.time.Clock()
         self._color = pygame.Color('white')
@@ -109,6 +109,13 @@ class GameView:
 
         self._time_passed = self._clock.tick(30) / 1000  # / 1000 to convert to seconds.
 
+    # getter for player's time
     @property
     def player_time(self):
         return self._timer
+    
+    # getter for player's backpack
+    @property
+    def player_backpack(self):
+        return self._maze.player.backpack
+    

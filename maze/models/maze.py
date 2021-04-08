@@ -6,7 +6,7 @@ class Maze:
     Represents a maze game that takes in a file to create the structure of the maze
 
     :param filename: Name of file being passed to create structure of the maze
-    :param filename: string
+    :type filename: string
     """
     def __init__(self, filename_):
         """
