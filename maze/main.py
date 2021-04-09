@@ -7,6 +7,7 @@ import tkinter  # This library is for the GUI where the user enters their userna
 # Player username in the global scope - this is where the GUI username entered will be saved
 username = ""
 
+# Using main() as a class
 def main():
     """
     Runs the maze game
