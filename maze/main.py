@@ -57,6 +57,7 @@ def main():
         # If the user runs out of time, their score will also not be persisted
         if int(game_controller.player_time) != 0:
             score_value = game_controller.player_time * 25  # Score calculation algorithm
+            print("The player score of", username, "is", int(score_value))
 
             player_score = Score()
             player_score.from_dict({
